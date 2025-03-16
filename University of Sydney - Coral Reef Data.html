@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Sydney - Coral Reef Data</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body { background-color: #e0f7fa; color: #01579b; }
+        .container { margin-top: 20px; }
+        .timeline { border-left: 4px solid #0288d1; padding-left: 20px; }
+        .timeline-event { margin-bottom: 20px; padding: 15px; background: #b3e5fc; border-radius: 5px; }
+        .chart-container { width: 100%; max-width: 800px; margin: auto; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">University of Sydney - Coral Reef Data (2020-2025)</h1>
+    
+    <div class="timeline">
+        <div class="timeline-event">
+            <h3>2020-2023: Fluctuating Recovery</h3>
+            <p>Coral coverage recovered from its 2017 low, reaching <b>35.8%</b> in 2023 (error range: 32.1%-39.5%).</p>
+        </div>
+
+        <div class="timeline-event">
+            <h3>2024: Catastrophic Bleaching</h3>
+            <p>66% of coral bleached in early 2024, rising to <b>80%</b> by April. By July, <b>53%</b> of bleached corals died, with <b>Acropora mortality at 95%</b>.</p>
+            <p>Sea temperatures rose by <b>1-2.5°C</b>, and disease outbreaks increased.</p>
+        </div>
+
+        <div class="timeline-event">
+            <h3>2025: AI Monitoring & Conservation</h3>
+            <p>The University of Sydney developed AI-based real-time monitoring models and emphasized urgent climate action.</p>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="coralChart"></canvas>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('coralChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+            datasets: [
+                {
+                    label: 'Coral Coverage (%)',
+                    data: [30, 32, 34, 35.8, 15, 20],
+                    borderColor: '#0288d1',
+                    fill: false
+                },
+                {
+                    label: 'Bleached Coral (%)',
+                    data: [0, 0, 5, 10, 80, 50],
+                    borderColor: '#ff7043',
+                    fill: false
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { position: 'top' } },
+            scales: {
+                x: { type: 'time', time: { unit: 'year' } },
+                y: { beginAtZero: true, max: 100 }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
